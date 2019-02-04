@@ -1,3 +1,4 @@
+version: 2
 test:
   override:
     - php ./test.php
@@ -12,5 +13,5 @@ deployment:
           revision_type: S3
           s3_location:
             bucket: s3awscirclecidemo
-            key_pattern: circleci-demo-app-{BRANCH}-{SHORT_COMMIT}
+            key_pattern: circleci-demo-app
         deployment_group: circleci-demo-dg
