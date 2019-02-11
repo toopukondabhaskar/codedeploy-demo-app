@@ -13,5 +13,5 @@ deployment:
           revision_type: S3
           s3_location:
             bucket: s3awscirclecidemo
-            key_pattern: circleci-demo-app
-        deployment_group: circleci-demo-dg
+            key_pattern: circleci-demo-app-{SHORT_COMMIT}-{BUILD_NUM}
+        deployment_group: staging-instances
