@@ -1,8 +1,12 @@
-  version: 2
-#jobs:
+version: 2
+jobs:
   #test:
     #override:
       #- php ./test.php
+  steps:
+    - run:
+        name: Show current branch
+        command: echo ${CIRCLE_BRANCH} 
   deployment:
     staging:
       branch: master
@@ -16,10 +20,10 @@
               bucket: s3awscirclecidemo
               key_pattern: circleci-demo-app-{SHORT_COMMIT}-{BUILD_NUM}
           deployment_group: staging-instances
-#workflows:
-  #version: 2
-  #workflow:
-    #jobs:
-      #- test
-      #- deployment
+workflows:
+  version: 2
+  workflow:
+    jobs:
+       #- test
+      - deployment
 
