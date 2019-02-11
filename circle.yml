@@ -8,6 +8,8 @@ jobs:
           #name: Show current branch
           #command: echo ${CIRCLE_BRANCH} 
   deployment:
+    machine:
+      enabled: true	
     steps:
       - run:
           name: Show current branch
