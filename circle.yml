@@ -16,3 +16,9 @@ jobs:
               bucket: s3awscirclecidemo
               key_pattern: circleci-demo-app-{SHORT_COMMIT}-{BUILD_NUM}
           deployment_group: staging-instances
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - test
+      - deployment
