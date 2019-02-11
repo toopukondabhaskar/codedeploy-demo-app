@@ -3,17 +3,14 @@ jobs:
   #test:
     #override:
       #- php ./test.php
-    #steps:
-      #- run:
-          #name: Show current branch
-          #command: echo ${CIRCLE_BRANCH} 
-  deployment:
+  build:
     machine:
-      enabled: true	
+      enabled: true
     steps:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
+  deployment:
     staging:
       branch: master
       codedeploy:
