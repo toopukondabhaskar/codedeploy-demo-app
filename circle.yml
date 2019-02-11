@@ -3,10 +3,10 @@ jobs:
   #test:
     #override:
       #- php ./test.php
-  steps:
-    - run:
-        name: Show current branch
-        command: echo ${CIRCLE_BRANCH} 
+    steps:
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH} 
   deployment:
     staging:
       branch: master
@@ -24,6 +24,6 @@ workflows:
   version: 2
   workflow:
     jobs:
-       #- test
+      #- test
       - deployment
 
