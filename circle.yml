@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  #test:
-    #override:
-      #- php ./test.php
+  test:
+    override:
+      - php ./test.php
     steps:
       - run:
           name: Show current branch
@@ -24,6 +24,6 @@ workflows:
   version: 2
   workflow:
     jobs:
-      #- test
+      - test
       - deployment
 
