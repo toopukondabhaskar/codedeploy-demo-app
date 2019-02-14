@@ -1,32 +1,52 @@
 version: 2
 jobs:
+  build:
+    docker:
+      #- image: circleci/ruby:2.4
+      #- image: circleci/redis:4.0
+    machine:
+      enabled: true
+    working_directory: ~/tmp/S3ContinuousDeploy
+    steps:
+      - checkout
+      - run: 
+          zip -r files.zip S3ContinuousDeploy/*.*
+      #- run: 
+          #sudo apt-get update && sudo apt-get install nginx -y    
+      #- run: 
+          #sudo pip install awscli
+      #- run: 
+           #aws s3 sync ~/tmp/S3ContinuousDeploy s3://s3awscirclecidemo --delete
+
+#version: 2
+#jobs:
   #test:
     #override:
       #- php ./test.php
-  build:
-    machine:
-      enabled: true
-    steps:
-      - run:
-          name: Show current branch
-          command: echo ${CIRCLE_BRANCH}
-  deployment:
-    staging:
-      branch: master
-      codedeploy:
-        circleci-demo-app:
-          application_root: /
-          region: us-east-1
-          revision_location:
-            revision_type: S3
-            s3_location:
-              bucket: s3awscirclecidemo
-              key_pattern: circleci-demo-app-{SHORT_COMMIT}-{BUILD_NUM}
-          deployment_group: staging-instances
-workflows:
-  version: 2
-  workflow:
-    jobs:
+  #build:
+    #machine:
+      #enabled: true
+    #steps:
+      #- run:
+          #name: Show current branch
+          #command: echo ${CIRCLE_BRANCH}
+  #deployment:
+    #staging:
+      #branch: master
+      #codedeploy:
+        #circleci-demo-app:
+          #application_root: /
+          #region: us-east-1
+          #revision_location:
+            #revision_type: S3
+            #s3_location:
+              #bucket: s3awscirclecidemo
+              #key_pattern: circleci-demo-app-{SHORT_COMMIT}-{BUILD_NUM}
+          #deployment_group: staging-instances
+#workflows:
+  #version: 2
+  #workflow:
+    #jobs:
       #- test
-      - deployment
+      #- deployment
 
