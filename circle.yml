@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - run: 
-          zip -r files.zip S3ContinuousDeploy/*.*
+          zip -r files.zip S3ContinuousDeploy
       #- run: 
           #sudo apt-get update && sudo apt-get install nginx -y    
       #- run: 
