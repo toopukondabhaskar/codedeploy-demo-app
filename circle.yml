@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           command: 
-            zip -r files.zip. -i ~/tmp/S3ContinuousDeploy
+            zip -r files.zip ~/tmp/S3ContinuousDeploy
       #- run: 
           #sudo apt-get update && sudo apt-get install nginx -y    
       #- run: 
