@@ -6,13 +6,14 @@ jobs:
       #- image: circleci/redis:4.0
     #machine:
       #enabled: true
-    working_directory: /home/circleci/S3ContinuousDeploy
+    working_directory: ~/tmp/S3ContinuousDeploy
     steps:
       - checkout
       - run:
           command: |
-            zip -r artifact.zip /home/circleci/S3ContinuousDeploy
-            mkdir /home/circleci/artifact && cd /home/circleci/artifact && cp artifact.zip /home/circleci/artifact
+            mkdir /home/circleci/artifact && cd /home/circleci/artifact
+            zip -r artifact.zip ~/tmp/S3ContinuousDeploy
+            cp artifact.zip /home/circleci/artifact
       - store_artifacts:
           path: /home/circleci/artifact/artifact.zip
           destination: /home/circleci/artifact  
