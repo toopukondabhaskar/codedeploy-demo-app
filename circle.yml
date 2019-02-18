@@ -13,26 +13,27 @@ jobs:
           command: |
             mkdir /home/circleci/artifact && cd /home/circleci/artifact
             zip -r artifact.zip ~/tmp/S3ContinuousDeploy
-            cp artifact.zip /home/circleci/artifact
+            #cp artifact.zip /home/circleci/artifact
       - store_artifacts:
           path: /home/circleci/artifact/artifact.zip
           destination: /home/circleci/artifact  
-      - run:
-          name: Deploy Over SSH
-          command: |
-            cp artifact.zip /home/ubuntu
-            echo $CIRCLE_BUILD_NUM
-            ssh ubuntu@54.204.70.36 BUILD_NO="$CIRCLE_BUILD_NUM"
-  #deploy:
-    #machine:
-      #enabled: true
-    #steps:
-      #- checkout
       #- run:
           #name: Deploy Over SSH
           #command: |
+            #cp artifact.zip /home/ubuntu
             #echo $CIRCLE_BUILD_NUM
-            #ssh ubuntu@54.204.70.36 BUILD_NO="$CIRCLE_BUILD_NUM" 
+            #ssh ubuntu@54.204.70.36 BUILD_NO="$CIRCLE_BUILD_NUM"
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - checkout
+      - run:
+          name: Deploy Over SSH
+          command: |
+            echo $CIRCLE_BUILD_NUM
+            cp /home/circleci/artifact /home/ubuntu
+            ssh ubuntu@54.204.70.36 BUILD_NO="$CIRCLE_BUILD_NUM" 
       #- run: 
           #sudo apt-get update && sudo apt-get install nginx -y    
       #- run: 
