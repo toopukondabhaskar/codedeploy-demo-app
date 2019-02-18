@@ -6,29 +6,32 @@ jobs:
       #- image: circleci/redis:4.0
     machine:
       enabled: true
-    working_directory: ~/tmp/S3ContinuousDeploy
+    working_directory: /home/circleci/S3ContinuousDeploy
     steps:
       - checkout
       - run:
           command: |
-            zip -r artifact.zip ~/S3ContinuousDeploy
+            zip -r artifact.zip /home/circleci/S3ContinuousDeploy
             mkdir /root/project/artifact && cd /root/project/artifact && cp artifact.zip /root/project/artifact
       - store_artifacts:
           path: /root/project/artifact/artifact.zip
           destination: /root/project/artifact  
-      # - setup_remote_docker:
-      #     docker_layer_caching: true
-      # - run: docker run -d -p 3000:3000 local:static_rails_app rails s -b 0.0.0.0
-  deploy:
-    machine:
-      enabled: true
-    steps:
-      - checkout
       - run:
           name: Deploy Over SSH
           command: |
+            cp artifact.zip /home/ubuntu
             echo $CIRCLE_BUILD_NUM
-            ssh ubuntu@54.204.70.36 BUILD_NO="$CIRCLE_BUILD_NUM" 
+            ssh ubuntu@54.204.70.36 BUILD_NO="$CIRCLE_BUILD_NUM"
+  #deploy:
+    #machine:
+      #enabled: true
+    #steps:
+      #- checkout
+      #- run:
+          #name: Deploy Over SSH
+          #command: |
+            #echo $CIRCLE_BUILD_NUM
+            #ssh ubuntu@54.204.70.36 BUILD_NO="$CIRCLE_BUILD_NUM" 
       #- run: 
           #sudo apt-get update && sudo apt-get install nginx -y    
       #- run: 
