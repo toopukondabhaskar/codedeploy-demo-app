@@ -11,7 +11,24 @@ jobs:
       - checkout
       - run:
           command: 
-            zip -r files.zip ~/tmp/S3ContinuousDeploy
+            zip -r artifact.zip ~/tmp/S3ContinuousDeploy
+            mkdir /root/project/artifact && cd /root/project/artifact && cp artifact.zip /root/project/artifact
+      - store_artifacts:
+          path: /root/project/artifact/artifact.zip
+          destination: /root/project/rtifact  
+      # - setup_remote_docker:
+      #     docker_layer_caching: true
+      # - run: docker run -d -p 3000:3000 local:static_rails_app rails s -b 0.0.0.0
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - checkout
+      - run:
+          name: Deploy Over SSH
+          command: |
+            echo $CIRCLE_BUILD_NUM
+            ssh ubuntu@$SSH_HOST BUILD_NO="$CIRCLE_BUILD_NUM" 
       #- run: 
           #sudo apt-get update && sudo apt-get install nginx -y    
       #- run: 
