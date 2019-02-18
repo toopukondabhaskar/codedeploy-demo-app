@@ -26,6 +26,7 @@ jobs:
   deploy:
     machine:
       enabled: true
+    working_directory: ~/tmp/S3ContinuousDeploy
     steps:
       - checkout
       - run:
