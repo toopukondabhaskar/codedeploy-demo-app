@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           command: |
-            zip -r artifact.zip ~/tmp/S3ContinuousDeploy
+            zip -r artifact.zip ~/S3ContinuousDeploy
             mkdir /root/project/artifact && cd /root/project/artifact && cp artifact.zip /root/project/artifact
       - store_artifacts:
           path: /root/project/artifact/artifact.zip
