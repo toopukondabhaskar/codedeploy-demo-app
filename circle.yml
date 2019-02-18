@@ -40,7 +40,12 @@ jobs:
           #sudo pip install awscli
       #- run: 
            #aws s3 sync ~/tmp/S3ContinuousDeploy s3://s3awscirclecidemo --delete
-
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build
+      - deploy
 #version: 2
 #jobs:
   #test:
