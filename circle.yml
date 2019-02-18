@@ -33,7 +33,7 @@ jobs:
           command: |
             zip -r artifact.zip ~/tmp/S3ContinuousDeploy
             echo $CIRCLE_BUILD_NUM
-            cp artifact.zip /home/ubuntu
+            #cp artifact.zip /home/ubuntu
             ssh ubuntu@54.204.70.36 BUILD_NO="$CIRCLE_BUILD_NUM" 
       #- run: 
           #sudo apt-get update && sudo apt-get install nginx -y    
