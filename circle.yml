@@ -40,7 +40,7 @@ jobs:
           name: Deploy Over SSH
           command: |
             echo $CIRCLE_BUILD_NUM
-            ssh ubuntu@54.204.70.36 BUILD_NO="$CIRCLE_BUILD_NUM" /bin/bash < "/home/circleci/scripts/deploy.sh" 
+            ssh ubuntu@54.204.70.36 BUILD_NO="$CIRCLE_BUILD_NUM" /bin/bash < "/home/circleci/project/scripts/deploy.sh" 
       #- run: 
           #sudo apt-get update && sudo apt-get install nginx -y    
       #- run: 
