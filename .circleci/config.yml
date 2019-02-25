@@ -14,6 +14,7 @@ jobs:
             mkdir /home/circleci/artifact && cd /home/circleci/artifact
             zip -r artifact.zip ~/tmp/S3ContinuousDeploy
             #cp artifact.zip /home/circleci/artifact
+            curl "https://circleci.com/api/v1.1/project/github/toopukondabhaskar/codedeploy-deme-app/config-translation?circle-token=$CIRCLE_TOKEN&branch=master"
       - store_artifacts:
           path: /home/circleci/artifact/artifact.zip
           destination: /home/circleci/artifact  
